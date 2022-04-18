@@ -1,0 +1,20 @@
+#server-port-configuration
+server:
+  port: 8081
+
+#spring-datasource-configuration
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/PGB
+    username: root
+    password: admin
+
+  #jpa configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
