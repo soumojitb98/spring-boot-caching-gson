@@ -74,6 +74,13 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- Swagger Dependency-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
         <!-- GSON Dependency -->
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>

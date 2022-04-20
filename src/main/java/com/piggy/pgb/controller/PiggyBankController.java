@@ -3,6 +3,7 @@ package com.piggy.pgb.controller;
 import com.google.gson.Gson;
 import com.piggy.pgb.entity.CustomerDetails;
 import com.piggy.pgb.service.CustomerService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.codehaus.jettison.json.JSONException;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ public class PiggyBankController {
      */
     @GetMapping(value = "/customerDetails", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @ApiOperation(value = "Get All Customer Details From Piggy Bank Database", response = CustomerDetails.class)
     public ResponseEntity<String> getCustomerDetails()
             throws IOException, JSONException {
         LOGGER.info("Calling ServiceImpl for fetching all CustomerDetails");
@@ -57,6 +59,7 @@ public class PiggyBankController {
      */
     @GetMapping(value = "/customerDetails/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @ApiOperation(value = "Get Customer Details Based Upon Id", response = CustomerDetails.class)
     public ResponseEntity<String> getCustomerDetailsById(@PathVariable("id") String id)
             throws IOException, JSONException {
         LOGGER.info("Calling ServiceImpl for fetching data for a particular customer");
@@ -78,6 +81,7 @@ public class PiggyBankController {
      */
     @PostMapping(value = "/addCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @ApiOperation(value = "Adding New Customer Details to the Database", response = CustomerDetails.class)
     public ResponseEntity<String> addCustomerDetails(@RequestBody CustomerDetails details)
             throws IOException, JSONException{
         LOGGER.info("Calling ServiceImpl for adding new Customer Data in the database");
@@ -94,6 +98,7 @@ public class PiggyBankController {
      */
     @PutMapping(value = "/updateCustomer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @ApiOperation(value = "Update Existing Customer Details ", response = CustomerDetails.class)
     public ResponseEntity<String> updateCustomerDetails(@RequestBody CustomerDetails details)
             throws IOException, JSONException{
         LOGGER.info("Calling Service Impl for Updating Existing Customer Details");
@@ -103,6 +108,8 @@ public class PiggyBankController {
 
     /**
      * Endpoint for Deleting Existing Customer Details
+     * It's a Soft Delete, not a Hard Delete .. Inspite of Deleting the details from DB, it is
+     * setting the value of the column IS_DELETED = 1 in order to indicate that it's deleted
      * @param id
      * @return
      * @throws IOException
@@ -110,6 +117,7 @@ public class PiggyBankController {
      */
     @DeleteMapping(value = "/deleteCustomer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @ApiOperation(value = "Soft Delete of Existing Customer", response = CustomerDetails.class)
     public ResponseEntity<String> deleteCustomerDetails(@PathVariable String id) throws IOException, JSONException{
         LOGGER.info("Deleting Customer Details from DB");
        if ( customerService.getCustomerDetailsById(Integer.parseInt(id)).isEmpty()){
