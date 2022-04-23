@@ -1,2 +1,2 @@
 # spring-boot-caching-gson
-BackEnd Using Spring Boot, REST API, Spring Caching and GSON 
+BackEnd of Piggy Bank Application using Spring Boot, GSON, Spring Caching, Spring Security & Swagger
